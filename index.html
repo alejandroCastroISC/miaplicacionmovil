@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script"></script>
+    <title>Aplicación Móvil</title>
+    <script type="text/javascript">
+        $(document).ready(function inicio(){
+        //alert("listo");
+        var btnEnvio=$("#enviar");
+        btnEnvio.click(function enviarDatos(){
+        var nom=$("#nombre").val();
+        var app=$("#apellidos").val();
+        var email=$("#email").val();
+        $.ajax({
+        type:"POST",
+        ulr:"envio.php",
+        data:"nombre="+nom+"&apellidos="+app+"&email="+email,
+        success: recepcion
+        });
+        });
+         function recepcion(datos) {
+             var resp=$("#respuesta")
+        }
+        });
+    </script>
+</head>
+<body>
+<div data-role="page" id="Principal" data-theme="a">
+    <div data-role="header">
+        <p style="text-align: center">Envio de datos desde un formulario</p>
+    </div>
+    <div data-roles="content">
+        <form method="GET" action="envio.php">
+            <div class="ui-field-contain">
+                <label for="nombre">Nombre: </label>
+                <input type="text" name="nombre" id="nombre" >
+                <label for="apellidos">Apellidos: </label>
+                <input type="text" name="apellidos" id="apellidos" >
+                <label for="email">Email: </label>
+                <input type="text" name="email" id="email" placeholder="cuenta@servicio.extencion">
+                <label for="email">Email: </label>
+                <input type="text" name="email" id="email" placeholder="cuenta@servicio.extencion">
+            </div>
+            <input type="button" name="enviar" id="enviar" value="Enviar">
+        </form>
+        <div data-transition="flip" id="resultado" >
+            
+        </div>
+    </div>
+    
+    <div data-role="content">
+        <p style="text-align: center; font-size: 18px;">Derechos reservados</p>
+    </div>
+</div>
+</body>
+</html>
